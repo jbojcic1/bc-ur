@@ -1,6 +1,6 @@
 {
   "name": "@gandlaf21/bc-ur",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "author": "gandlaf21 <gandlaf@proton.me>",
   "description": "A JS implementation of the Uniform Resources (UR) specification from Blockchain Commons",
   "license": "MIT",
