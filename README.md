@@ -1,6 +1,6 @@
 # BC-UR
 
-Fork from `@ngraveio/bc-ur` implementing blockchain commons unified resources in typescript
+Fork from `@ngraveio/bc-ur` implementing blockchain commons unified resources in typescript. 
 
 ## Installing
 
