@@ -1,6 +1,10 @@
 import UREncoder from "../src/urEncoder";
 import URDecoder from "../src/urDecoder";
 import { makeMessageUR } from "./utils";
+import UR from "../src/ur";
+import { cborDecode, cborEncode } from '../src/cbor';
+import { describe, test, expect } from "vitest";
+
 
 describe('UR', () => {
   test('encode/decode single part ur', () => {
@@ -63,8 +67,47 @@ describe('UR', () => {
         "ur:bytes/19-9/lpbwascfadaxcywenbpljkhdcadekicpaajootjzpsdrbalpeywllbdsnbinaerkurspbncxgslgftvtsrjtksplcpeo",
         "ur:bytes/20-9/lpbbascfadaxcywenbpljkhdcayapmrleeleaxpasfrtrdkncffwjyjzgyetdmlewtkpktgllepfrltataztksmhkbot"
       ]
-
+      console.log(parts)
       expect(parts).toEqual(expectedParts);
+    });
+  });
+  describe('console', () => {
+    test('asdf', () => {
+      const ur = UR.from('{"test":"test"}', 'utf-8')
+      console.log(ur.cbor.toString("utf-8"))
+      const encoder = new UREncoder(ur, 10)
+      const parts = [...new Array(20)].map(() => encoder.nextPart())
+      const decoder = new URDecoder()
+
+      do {
+        // Scan the part from a QRCode
+        // the part should look like this:
+        // ur:bytes/1-9/lpadascfadaxcywenbpljkhdcahkadaemejtswhhylkepmykhhtsytsnoyoyaxaedsuttydmmhhpktpmsrjtdkgslpgh
+        const part = encoder.nextPart()
+
+        // register the new part with the decoder
+        decoder.receivePart(part)
+
+        // check if all the necessary parts have been received to successfully decode the message
+      } while (!decoder.isComplete())
+
+      // If no error has been found
+      if (decoder.isSuccess()) {
+        // Get the UR representation of the message
+        const ur = decoder.resultUR()
+
+        // Decode the CBOR message to a Buffer
+        const decoded = ur.decodeCBOR()
+
+        // get the original message, assuming it was a JSON object
+        console.log("message was"+decoded.toString())
+      }
+      else {
+        // log and handle the error
+        const error = decoder.resultError()
+        console.log('Error found while decoding', error)
+      }
+      console.log(parts)
     });
   });
 });

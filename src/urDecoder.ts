@@ -1,10 +1,11 @@
 import FountainDecoder from './fountainDecoder';
 import bytewords from './bytewords';
-import assert from 'assert';
 import { isURType, toUint32 } from './utils';
 import { InvalidSchemeError, InvalidPathLengthError, InvalidTypeError, InvalidSequenceComponentError } from './errors';
 import UR from './ur';
 import { FountainEncoderPart } from './fountainEncoder';
+import { Buffer } from "buffer";
+
 
 export default class URDecoder {
   private expected_type: string;
@@ -15,8 +16,9 @@ export default class URDecoder {
     private fountainDecoder: FountainDecoder = new FountainDecoder(),
     public type: string = 'bytes'
   ) {
-    assert(isURType(type), 'Invalid UR type');
-
+    if (!isURType(type)) {
+      throw new Error("Invalid UR type");
+    }
     this.expected_type = '';
   }
 

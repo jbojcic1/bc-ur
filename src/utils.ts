@@ -1,7 +1,30 @@
-import shajs from 'sha.js';
-import { crc32 } from 'crc';
+import { Buffer } from "buffer";
+import { sha256 } from "@noble/hashes/sha256";
 
-export const sha256Hash = (data: Buffer | string) => shajs('sha256').update(data).digest();
+
+const CRC_TABLE = function(){
+  let c;
+  let crcTable = [];
+  for(let n =0; n < 256; n++){
+      c = n;
+      for(let k =0; k < 8; k++){
+          c = ((c&1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1));
+      }
+      crcTable[n] = c;
+  }
+  return crcTable;
+}()
+
+let crc32 = function(message:Buffer):number {
+  let crc = 0 ^ (-1);
+  for (let i = 0; i < message.length; i++ ) {
+      crc = (crc >>> 8) ^ CRC_TABLE[(crc ^ message[i]) & 0xFF];
+  }
+  return (crc ^ (-1)) >>> 0;
+};
+
+
+export const sha256Hash = (data: Buffer | string) => Buffer.from(sha256(data));
 
 export const partition = (s: string, n: number): string[] => s.match(new RegExp('.{1,' + n + '}', 'g')) || [s];
 

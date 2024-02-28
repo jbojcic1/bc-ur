@@ -1,10 +1,11 @@
 {
-  "name": "@ngraveio/bc-ur",
+  "name": "@gandlaf21/bc-ur",
   "version": "1.1.6",
-  "author": "Antonis Poulakis <antwnic4@gmail.com>",
+  "author": "gandlaf21 <gandlaf@proton.me>",
   "description": "A JS implementation of the Uniform Resources (UR) specification from Blockchain Commons",
   "license": "MIT",
   "main": "dist/index.js",
+  "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "directories": {
     "lib": "src",
@@ -17,39 +18,37 @@
   "scripts": {
     "clean": "rimraf dist && rimraf tsconfig.tsbuildinfo",
     "build": "yarn clean && yarn compile",
-    "compile": "tsc -p tsconfig.json -outDir ./dist",
-    "test": "jest",
+    "compile": "tsc -p tsconfig.json && tsc -p tsconfig.esm.json",
+    "test": "vitest",
     "prepublish": "yarn build",
     "lint": "eslint \"./src/**/*.{ts,tsx}\" --max-warnings=0"
   },
   "dependencies": {
     "@apocentre/alias-sampling": "^0.5.3",
-    "assert": "^2.0.0",
+    "@noble/hashes": "^1.3.3",
     "bignumber.js": "^9.0.1",
+    "buffer": "^6.0.3",
     "cbor-sync": "^1.0.4",
-    "crc": "^3.8.0",
-    "jsbi": "^3.1.5",
-    "sha.js": "^2.4.11"
+    "cborg": "^4.0.9",
+    "jsbi": "3.1.5"
   },
   "devDependencies": {
     "@types/crc": "^3.4.0",
-    "@types/sha.js": "^2.4.0",
-    "@types/jest": "^26.0.23",
     "@types/node": "^14.14.25",
-    "jest": "^26.6.3",
+    "@types/sha.js": "^2.4.0",
     "rimraf": "^3.0.2",
-    "ts-jest": "^26.5.1",
-    "typescript": "^4.1.5"
+    "typescript": "^4.1.5",
+    "vitest": "^1.3.1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ngraveio/bc-ur.git"
+    "url": "git+https://github.com/gandlafbtc/bc-ur.git"
   },
   "keywords": [
     "bc-ur"
   ],
   "bugs": {
-    "url": "https://github.com/ngraveio/bc-ur/issues"
+    "url": "https://github.com/gandlafbtc/bc-ur/issues"
   },
-  "homepage": "https://github.com/ngraveio/bc-ur#readme"
+  "homepage": "https://github.com/gandlafbtc/bc-ur#readme"
 }

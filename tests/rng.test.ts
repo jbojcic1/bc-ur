@@ -3,6 +3,8 @@ import { chooseDegree, chooseFragments, shuffle } from "../src/fountainUtils";
 import { bufferXOR, getCRC, intToBytes } from "../src/utils";
 import Xoshiro from "../src/xoshiro";
 import { makeMessage } from "./utils";
+import { describe, test, expect } from "vitest";
+
 const randomSampler = require('@apocentre/alias-sampling');
 
 describe('Xoshiro rng', () => {

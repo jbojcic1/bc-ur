@@ -1,7 +1,6 @@
 import { sha256Hash } from "./utils";
 import BigNumber from 'bignumber.js'
 import JSBI from 'jsbi'
-
 const MAX_UINT64 = 0xFFFFFFFFFFFFFFFF;
 const rotl = (x: JSBI, k: number): JSBI => JSBI.bitwiseXor(
   JSBI.asUintN(64, JSBI.leftShift(x, JSBI.BigInt(k))),

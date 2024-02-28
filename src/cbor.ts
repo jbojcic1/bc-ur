@@ -1,9 +1,10 @@
-const cbor = require('cbor-sync');
+import { Buffer } from "buffer";
+import {encode, decode} from "cborg";
 
 export const cborEncode = (data: any): Buffer => {
-  return cbor.encode(data);
+  return Buffer.from(encode(data));
 }
 
 export const cborDecode = (data: string | Buffer): any => {
-  return cbor.decode(Buffer.isBuffer(data) ? data : Buffer.from(data as string, 'hex'));
+  return decode(Buffer.isBuffer(data) ? data : Buffer.from(data as string, 'hex'));
 }

@@ -1,6 +1,8 @@
 import FountainEncoder, { FountainEncoderPart } from './fountainEncoder';
 import bytewords from './bytewords';
 import UR from './ur';
+import { Buffer } from "buffer";
+
 
 export default class UREncoder {
   private ur: UR;

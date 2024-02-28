@@ -1,6 +1,7 @@
 import FountainEncoder from "../src/fountainEncoder";
 import FountainDecoder from "../src/fountainDecoder";
 import { makeMessage } from "./utils";
+import { describe, test, expect } from "vitest";
 
 describe('Fountain Decoder', () => {
   test('decoder', () => {

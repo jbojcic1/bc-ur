@@ -1,4 +1,4 @@
-import assert from "assert";
+import { Buffer } from "buffer";
 import { getCRCHex, partition, split } from "./utils";
 
 const bytewords = 'ableacidalsoapexaquaarchatomauntawayaxisbackbaldbarnbeltbetabiasbluebodybragbrewbulbbuzzcalmcashcatschefcityclawcodecolacookcostcruxcurlcuspcyandarkdatadaysdelidicedietdoordowndrawdropdrumdulldutyeacheasyechoedgeepicevenexamexiteyesfactfairfernfigsfilmfishfizzflapflewfluxfoxyfreefrogfuelfundgalagamegeargemsgiftgirlglowgoodgraygrimgurugushgyrohalfhanghardhawkheathelphighhillholyhopehornhutsicedideaidleinchinkyintoirisironitemjadejazzjoinjoltjowljudojugsjumpjunkjurykeepkenokeptkeyskickkilnkingkitekiwiknoblamblavalazyleaflegsliarlimplionlistlogoloudloveluaulucklungmainmanymathmazememomenumeowmildmintmissmonknailnavyneednewsnextnoonnotenumbobeyoboeomitonyxopenovalowlspaidpartpeckplaypluspoempoolposepuffpumapurrquadquizraceramprealredorichroadrockroofrubyruinrunsrustsafesagascarsetssilkskewslotsoapsolosongstubsurfswantacotasktaxitenttiedtimetinytoiltombtoystriptunatwinuglyundouniturgeuservastveryvetovialvibeviewvisavoidvowswallwandwarmwaspwavewaxywebswhatwhenwhizwolfworkyankyawnyellyogayurtzapszerozestzinczonezoom';
@@ -46,8 +46,10 @@ const encodeMinimal = (word: string): string => {
 }
 
 const decodeWord = (word: string, wordLength: number): string => {
-  assert(word.length === wordLength, 'Invalid Bytewords: word.length does not match wordLength provided');
-
+  if (word.length!==wordLength) {
+    throw new Error("'Invalid Bytewords: word.length does not match wordLength provided'");
+    
+  }
   const dim = 26;
 
   // Since the first and last letters of each Byteword are unique,
@@ -71,12 +73,16 @@ const decodeWord = (word: string, wordLength: number): string => {
   let x = (word[0]).toLowerCase().charCodeAt(0) - 'a'.charCodeAt(0);
   let y = (word[wordLength == 4 ? 3 : 1]).toLowerCase().charCodeAt(0) - 'a'.charCodeAt(0);
 
-  assert(0 <= x && x < dim && 0 <= y && y < dim, 'Invalid Bytewords: invalid word');
+  if(!(0 <= x && x < dim && 0 <= y && y < dim)){
+    throw new Error("Invalid Bytewords: invalid word");
+  }
 
   let offset = y * dim + x;
   let value = bytewordsLookUpTable[offset];
 
-  assert(value !== -1, 'Invalid Bytewords: value not in lookup table');
+  if (value === -1) {
+    throw new Error("Invalid Bytewords: value not in lookup table");
+  }
 
   // If we're decoding a full four-letter word, verify that the two middle letters are correct.
   if (wordLength == BYTEWORD_LENGTH) {
@@ -84,7 +90,9 @@ const decodeWord = (word: string, wordLength: number): string => {
     let c1 = word[1].toLowerCase();
     let c2 = word[2].toLowerCase();
 
-    assert(c1 === byteword[1] && c2 === byteword[2], 'Invalid Bytewords: invalid middle letters of word');
+    if (!(c1 === byteword[1] && c2 === byteword[2])) {
+      throw new Error("Invalid Bytewords: invalid middle letters of word");
+    }
   }
 
   // Successful decode.
@@ -95,13 +103,16 @@ const _decode = (string: string, separator: string, wordLength: number): string 
   const words = wordLength == BYTEWORD_LENGTH ? string.split(separator) : partition(string, 2)
   const decodedString = words.map((word: string) => decodeWord(word, wordLength)).join('');
 
-  assert(decodedString.length >= 5, 'Invalid Bytewords: invalid decoded string length');
+  if (decodedString.length < 5) {
+    throw new Error("Invalid Bytewords: invalid decoded string length");
+  }
 
   const [body, bodyChecksum] = split(Buffer.from(decodedString, 'hex'), 4)
   const checksum = getCRCHex(body)// convert to hex
 
-  assert(checksum === bodyChecksum.toString('hex'), 'Invalid Checksum');
-
+  if (checksum !== bodyChecksum.toString('hex')) {
+    throw new Error("Invalid Checksum");
+  }
   return body.toString('hex');
 }
 

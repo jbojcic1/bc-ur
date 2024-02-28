@@ -1,4 +1,5 @@
 import { getCRCHex } from "../src/utils";
+import { describe, test, expect } from "vitest";
 
 describe('CRC32', () => {
   test('crc32 results', () => {

@@ -1,5 +1,6 @@
 import FountainEncoder, { FountainEncoderPart } from "../src/fountainEncoder";
 import { makeMessage } from "./utils";
+import { describe, test, expect } from "vitest";
 
 describe('Fountain Encoder', () => {
   test('finds fragment length', () => {

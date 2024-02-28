@@ -1,7 +1,8 @@
-import assert from "assert";
 import { bufferXOR, getCRC, split, toUint32 } from "./utils";
 import { chooseFragments } from "./fountainUtils";
 import { cborEncode, cborDecode } from './cbor';
+import { Buffer } from "buffer";
+
 
 export class FountainEncoderPart {
   constructor(
@@ -43,11 +44,9 @@ export class FountainEncoderPart {
       fragment,
     ] = cborDecode(cborPayload);
 
-    assert(typeof seqNum === 'number');
-    assert(typeof seqLength === 'number');
-    assert(typeof messageLength === 'number');
-    assert(typeof checksum === 'number');
-    assert(Buffer.isBuffer(fragment) && fragment.length > 0);
+    if (typeof seqNum !== 'number'||typeof seqLength!== 'number'||typeof messageLength !== 'number'||typeof checksum !== 'number' || Buffer.isBuffer(fragment) && fragment.length <= 0) {
+      throw new Error("type error");
+    }
 
     return new FountainEncoderPart(
       seqNum,
@@ -124,9 +123,11 @@ export default class FountainEncoder {
     minFragmentLength: number,
     maxFragmentLength: number
   ): number {
-    assert(messageLength > 0)
-    assert(minFragmentLength > 0)
-    assert(maxFragmentLength >= minFragmentLength)
+
+    if (messageLength <= 0 || minFragmentLength <= 0 || maxFragmentLength < minFragmentLength) {
+      throw new Error("invalid fragment or message length");
+            
+    }
 
     const maxFragmentCount = Math.ceil(messageLength / minFragmentLength);
     let fragmentLength = 0;

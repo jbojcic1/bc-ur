@@ -5,6 +5,6 @@ import URDecoder from './urDecoder';
 export {
   UR,
   UREncoder,
-  URDecoder
+  URDecoder,
 }
 

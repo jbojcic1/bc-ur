@@ -2,6 +2,8 @@ import { arrayContains, arraysEqual, bufferXOR, getCRC, setDifference, split } f
 import { chooseFragments } from "./fountainUtils";
 import { FountainEncoderPart } from "./fountainEncoder";
 import { InvalidChecksumError } from "./errors";
+import { Buffer } from "buffer";
+
 
 export class FountainDecoderPart {
   constructor(

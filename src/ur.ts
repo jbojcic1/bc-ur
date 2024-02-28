@@ -1,6 +1,8 @@
 import { InvalidTypeError } from "./errors";
 import { isURType } from "./utils";
 import { cborEncode, cborDecode } from './cbor';
+import { Buffer } from "buffer";
+
 
 export default class UR {
   constructor(

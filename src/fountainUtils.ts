@@ -1,11 +1,12 @@
 import { intToBytes } from "./utils";
 import Xoshiro from "./xoshiro";
-const randomSampler = require('@apocentre/alias-sampling');
+import randomSampler from '@apocentre/alias-sampling'
+import { Buffer } from "buffer";
+
 
 export const chooseDegree = (seqLenth: number, rng: Xoshiro): number => {
   const degreeProbabilities = [...new Array(seqLenth)].map((_, index) => 1 / (index + 1));
   const degreeChooser = randomSampler(degreeProbabilities, null, rng.nextDouble);
-
   return degreeChooser.next() + 1;
 }
 
