@@ -1,5 +1,6 @@
 import { intToBytes } from "./utils";
 import Xoshiro from "./xoshiro";
+// @ts-ignore
 import randomSampler from '@apocentre/alias-sampling'
 import { Buffer } from "buffer";
 

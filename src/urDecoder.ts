@@ -143,7 +143,7 @@ export default class URDecoder {
   }
 
   public isComplete(): boolean {
-    return this.result && this.result.cbor.length > 0;
+    return this.result && this.result.cbor.length > 0?true:false;
   }
 
   public isSuccess(): boolean {

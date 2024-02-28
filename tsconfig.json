@@ -1,28 +1,14 @@
 {
-  "compilerOptions": {
-    "declaration": true,
-    "sourceMap": true,
-    "composite": true,
-    "module": "CommonJS",
-    "moduleResolution": "node",
-    "rootDir": "./src",
-    "outDir": "./dist",
-    "target": "es2019",
-    "lib": [
-      "es2019"
-    ],
-  },
-  "paths": {
-    "*": [
-      "node_modules/*",
-      "@types/*"
-    ]
-  },
-  "references": [],
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "tests/"
-  ]
+	"compilerOptions": {
+		"module": "ES6",
+		"target": "ES5",
+		"lib": ["ES2020", "DOM"],
+		"declaration": true,
+		"outDir": "./dist/lib/es6",
+		"moduleResolution": "node",
+		"strict": true,
+		"sourceMap": true,
+		"esModuleInterop": true
+	},
+	"include": ["src/**/*"]
 }

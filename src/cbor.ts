@@ -1,5 +1,5 @@
 import { Buffer } from "buffer";
-import {encode, decode} from "cborg/cborg.js";
+import {encode, decode} from "cborg";
 
 export const cborEncode = (data: any): Buffer => {
   return Buffer.from(encode(data));

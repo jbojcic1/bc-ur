@@ -4,9 +4,8 @@
   "author": "gandlaf21 <gandlaf@proton.me>",
   "description": "A JS implementation of the Uniform Resources (UR) specification from Blockchain Commons",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/es5/index.js",
+  "module": "dist/es6/index.js",
   "directories": {
     "lib": "src",
     "test": "tests"
@@ -33,6 +32,7 @@
     "jsbi": "3.1.5"
   },
   "devDependencies": {
+    "@babel/helper-compilation-targets": "^7.23.6",
     "@types/crc": "^3.4.0",
     "@types/node": "^14.14.25",
     "@types/sha.js": "^2.4.0",
