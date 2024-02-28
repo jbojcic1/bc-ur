@@ -1,12 +1,12 @@
 # BC-UR
 
-This repository is an implementation of the BC-UR encoding, following the [C++ implementation](https://github.com/BlockchainCommons/bc-ur) and trying to provide a similar API for Javascript/Typescript usage.
+Fork from `@ngraveio/bc-ur` implementing blockchain commons unified resources in typescript
 
 ## Installing
 
 To install, run:
 ```bash
-yarn add @ngraveio/bc-ur
+yarn add @gandlaf21/bc-ur
 ```
 
 ## Quick Start
@@ -14,7 +14,7 @@ yarn add @ngraveio/bc-ur
 ### Encode a message
 
 ```js
-import {UR, UREncoder} from '@ngraveio/bc-ur'
+import {UR, UREncoder} from '@gandalf21/bc-ur'
 
 const message = {any: 'property'}
 const messageBuffer = Buffer.from(JSON.stringify(message))
@@ -52,7 +52,7 @@ while(!stop) {
 ### Decode a message
 
 ```js
-import {URDecoder} from '@ngraveio/bc-ur'
+import {URDecoder} from '@gandalf21/bc-ur'
 
 // Create the decoder object
 const decoder = new URDecoder()
