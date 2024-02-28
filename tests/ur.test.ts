@@ -2,7 +2,6 @@ import UREncoder from "../src/urEncoder";
 import URDecoder from "../src/urDecoder";
 import { makeMessageUR } from "./utils";
 import UR from "../src/ur";
-import { cborDecode, cborEncode } from '../src/cbor';
 import { describe, test, expect } from "vitest";
 
 

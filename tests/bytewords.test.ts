@@ -1,4 +1,3 @@
-import { AssertionError } from 'assert';
 import bytewords from '../src/bytewords';
 import { describe, test, expect } from "vitest";
 
