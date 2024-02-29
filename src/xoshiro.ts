@@ -1,5 +1,6 @@
 import { sha256Hash } from "./utils";
 import BigNumber from 'bignumber.js'
+import { Buffer } from "buffer";
 import JSBI from 'jsbi'
 
 const MAX_UINT64 = 0xFFFFFFFFFFFFFFFF;

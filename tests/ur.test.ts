@@ -72,7 +72,7 @@ describe('UR', () => {
   });
   describe('console', () => {
     test('asdf', () => {
-      const ur = UR.from('{"test":"test"}', 'utf-8')
+      const ur = UR.from('{"test":"test"}')
       console.log(ur.cbor.toString("utf-8"))
       const encoder = new UREncoder(ur, 10)
       const parts = [...new Array(20)].map(() => encoder.nextPart())
