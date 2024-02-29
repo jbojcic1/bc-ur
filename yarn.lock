@@ -247,13 +247,6 @@
   resolved "https://registry.npmjs.org/@types/node/-/node-14.14.25.tgz"
   integrity sha512-EPpXLOVqDvisVxtlbvzfyqSsFeQxltFbluZNRndIb8tr9KiBnYNLzrc1N3pyKUCww2RNrfHDViqDWWE1LCJQtQ==
 
-"@types/sha.js@^2.4.0":
-  version "2.4.0"
-  resolved "https://registry.npmjs.org/@types/sha.js/-/sha.js-2.4.0.tgz"
-  integrity sha512-amxKgPy6WJTKuw8mpUwjX2BSxuBtBmZfRwIUDIuPJKNwGN8CWDli8JTg5ONTWOtcTkHIstvT7oAhhYXqEjStHQ==
-  dependencies:
-    "@types/node" "*"
-
 "@vitest/expect@1.3.1":
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@vitest/expect/-/expect-1.3.1.tgz#d4c14b89c43a25fd400a6b941f51ba27fe0cb918"
