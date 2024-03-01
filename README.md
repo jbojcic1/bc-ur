@@ -14,7 +14,7 @@ yarn add @gandlaf21/bc-ur
 ### Encode a message
 
 ```js
-import {UR, UREncoder} from '@gandalf21/bc-ur'
+import {UR, UREncoder} from '@gandlaf21/bc-ur'
 
 const message = {any: 'property'}
 const messageBuffer = Buffer.from(JSON.stringify(message))
@@ -52,7 +52,7 @@ while(!stop) {
 ### Decode a message
 
 ```js
-import {URDecoder} from '@gandalf21/bc-ur'
+import {URDecoder} from '@gandlaf21/bc-ur'
 
 // Create the decoder object
 const decoder = new URDecoder()
