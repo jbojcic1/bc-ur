@@ -1,7 +1,7 @@
 import { Buffer } from 'buffer';
 import { sha256 } from '@noble/hashes/sha256';
 import { encode as encode$1, decode as decode$1 } from 'cborg';
-import BigNumber from 'bignumber.js';
+import { Big } from 'big.js';
 import JSBI from 'jsbi';
 import randomSampler from '@apocentre/alias-sampling';
 
@@ -173,10 +173,10 @@ class Xoshiro {
         return result;
     }
     next = () => {
-        return new BigNumber(this.roll().toString());
+        return new Big(this.roll().toString());
     };
     nextDouble = () => {
-        return new BigNumber(this.roll().toString()).div(MAX_UINT64 + 1);
+        return new Big(this.roll().toString()).div(MAX_UINT64 + 1);
     };
     nextInt = (low, high) => {
         return Math.floor((this.nextDouble().toNumber() * (high - low + 1)) + low);

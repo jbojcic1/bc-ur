@@ -1,5 +1,5 @@
 import { sha256Hash } from "./utils";
-import BigNumber from 'bignumber.js'
+import { Big } from 'big.js';
 import { Buffer } from "buffer";
 import JSBI from 'jsbi'
 
@@ -62,12 +62,12 @@ export default class Xoshiro {
     return result;
   }
 
-  next = (): BigNumber => {
-    return new BigNumber(this.roll().toString())
+  next = (): Big => {
+    return new Big(this.roll().toString())
   }
 
-  nextDouble = (): BigNumber => {
-    return new BigNumber(this.roll().toString()).div(MAX_UINT64 + 1)
+  nextDouble = (): Big => {
+    return new Big(this.roll().toString()).div(MAX_UINT64 + 1)
   }
 
   nextInt = (low: number, high: number): number => {

@@ -3,7 +3,7 @@
 var buffer = require('buffer');
 var sha256 = require('@noble/hashes/sha256');
 var cborg = require('cborg');
-var BigNumber = require('bignumber.js');
+var big_js = require('big.js');
 var JSBI = require('jsbi');
 var randomSampler = require('@apocentre/alias-sampling');
 
@@ -175,10 +175,10 @@ class Xoshiro {
         return result;
     }
     next = () => {
-        return new BigNumber(this.roll().toString());
+        return new big_js.Big(this.roll().toString());
     };
     nextDouble = () => {
-        return new BigNumber(this.roll().toString()).div(MAX_UINT64 + 1);
+        return new big_js.Big(this.roll().toString()).div(MAX_UINT64 + 1);
     };
     nextInt = (low, high) => {
         return Math.floor((this.nextDouble().toNumber() * (high - low + 1)) + low);
